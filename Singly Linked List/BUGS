@@ -1,0 +1,6 @@
+List of known bugs:
+
+- There is a silly annoying bug in the function
+    void userInput(Guitar*);
+  Upon reaching the last line where it calls setValues(Guitar*,...), the value of 'p_id' changes to 0 or 65536. And I dont know why.
+  Well anyway, this is just a bug related to the implementation of the user datatype not the singly linked list implementation code.
