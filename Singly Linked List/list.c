@@ -29,6 +29,7 @@ static inline S_Node *new_node(void *content, size_t size, create_mode_t mode) {
         copy = calloc(1, size);
         if(!copy)
             return NULL;
+        memcpy(copy, content, size);
     }
     else if(mode == ORIGINAL)
     // Copy the original content
