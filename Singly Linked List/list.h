@@ -25,8 +25,10 @@ typedef struct s_head {
  */
 void init_head(S_Head *head);
 
-/* Create a node with its content_ as the arg-2 and push it to the tail  */
-int push(S_Head*, void*);
+/* Create a node with its content_ as the arg-2 and push it to the tail.
+ * Arg-3 is required to let push() be able to create a new copy of the actual content and store it in the new node.
+ */
+int push(S_Head*, void*, size_t);
 
 /* Traverse through the list linearly while printing the content's ID of each node */
 /*
@@ -37,6 +39,6 @@ int push(S_Head*, void*);
 void print_list(S_Head*, void*, size_t); //TODO... This is a little tricky to implement.
 
 /* Similar to print_list() except using a callback function which is capable of printing the contents of that type. */
-void print_list_cb(void (*printer)(void*));
+void print_list_cb(void (*printer)(void*), S_Head*);
 
 #endif

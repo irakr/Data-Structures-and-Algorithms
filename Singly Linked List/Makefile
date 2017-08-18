@@ -1,7 +1,7 @@
 # Makefile for singly linked list
 CC=gcc
 LD=ld
-CFLAGS=-Wall
+CFLAGS=-Wall -std=c99
 GDB=-g
 EXE=sllist
 
