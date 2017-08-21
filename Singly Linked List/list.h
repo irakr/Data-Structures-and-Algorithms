@@ -16,7 +16,7 @@ typedef struct s_node {
 
 /* Data type for head pointer of a singly linked list */
 typedef struct s_head {
-    S_Node *head_, *tail_; // Optional 'tail' pointer for quick reference to the tail node.
+    S_Node *head_, *tail_;
 } S_Head;
 
 

@@ -6,7 +6,7 @@ GDB=-g
 EXE=sllist
 
 $(EXE):	main.o list.o list.h
-	$(CC) main.o list.o -o sllist
+	$(CC) main.o list.o -o $(EXE)
 
 main.o:	main.c list.h
 	$(CC) $(CFLAGS) -c main.c
