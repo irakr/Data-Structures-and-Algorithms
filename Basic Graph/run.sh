@@ -21,6 +21,8 @@ if [ $option -eq 1 ]; then
     make_arg=''
 elif [ $option -eq 2 ]; then
     make_arg='-DMATRIX_IMPL'
+elif [ $option -eq '' ]; then
+    make_arg=''
 else
     echo -e "${red} Wrong option!${nocolor}"
     exit
