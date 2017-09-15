@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #??????
-ALGO="Singly Linked List"
+ALGO="Binary Search Tree"
 
 red='\e[0;31m'
 green='\e[0;32m'
@@ -9,7 +9,7 @@ l_green='\e[1;32m'
 cyan='\e[1;36m'
 nocolor='\e[0m'
 
-EXE=sllist
+EXE=bst #??????
 
 echo -e "${green}Building Project: $ALGO ..."
 make clean
