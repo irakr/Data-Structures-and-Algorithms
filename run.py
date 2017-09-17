@@ -56,6 +56,7 @@ def main():
     # Now its time to execute the algorithm by invoking its run script
     os.chdir(selected_dir)
     
-    os.spawnlp(os.P_WAIT, 'bash', 'bash', 'run.sh')
+    # NOTE: stderr is suppressed for cleaner output
+    os.spawnlp(os.P_WAIT, 'bash', 'bash', 'run.sh', '2>/dev/null')
     
 exit(main())

@@ -36,14 +36,16 @@ make clean
 make DEFINES=$make_arg
 wait
 echo -e "${l_green}[Build successful]"
-echo -e "Running the program..."
+echo -e "Executing..."
 printf "\n"
 echo -e "${cyan}---------------- $ALGO ----------------${nocolor}"
+echo -e "${cyan}=========================================================${nocolor}"
 
 ./$EXE
 
 wait
 
+echo -e "${cyan}=========================================================${nocolor}"
 echo -e "\n${cyan}--------------- End of execution ---------------"
 printf "\nCleaning up directory...${nocolor}\n"
 
