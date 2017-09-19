@@ -33,8 +33,12 @@ fi
 
 echo -e "${green}Building Project: $ALGO ..."
 make clean
-make DEFINES=$make_arg
-wait
+if ! make DEFINES=$make_arg
+then
+        echo -e "${red}[Build failed]\nExiting...${nocolor}\n"
+        exit 1
+fi
+
 echo -e "${l_green}[Build successful]"
 echo -e "Executing..."
 printf "\n"

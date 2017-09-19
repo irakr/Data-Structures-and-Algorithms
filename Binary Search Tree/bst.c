@@ -6,6 +6,9 @@
 #include <stdlib.h>
 #include <string.h>
 
+/* (MACRO): Yield the max value of; a or b	*/
+#define max(a, b)	(((a) > (b)) ? (a) : (b))
+
 /*
  * (WRAPPER): To free() a BST_Node* including its _content.
  *
@@ -59,10 +62,6 @@ int insert_node(BST_Node **root, BST_Node *node) {
 	if(!node)
 		return -1;
 	
-#ifdef RECURSIVE
-	// Recursive implementation here (TODO)
-#else
-	
 	BST_Node *ptr = *root, *parent_ptr = NULL;
 	
 	// For empty tree
@@ -88,8 +87,6 @@ int insert_node(BST_Node **root, BST_Node *node) {
 		parent_ptr->_right = node;
 	
 	return 0;
-	
-#endif
 }
 
 
@@ -184,6 +181,26 @@ BST_Node *largest_node(BST_Node *root) {
 			ptr = ptr->_right;
 	
 	return ptr;
+}
+
+/*
+ * Returns the no of edges from the root through the deepest level node.
+ */
+int height(BST_Node *root) {
+	// Cancel out the +1 for the root node since it does not have any incoming edge
+	int h = depth(root) - 1;
+	if(h < 0) // In case of empty tree
+		h = 0;
+	return h;
+}
+
+/*
+ * Returns the no of nodes from the root through the deepest level node.
+ */
+int depth(BST_Node *root) {
+	if(!root)
+		return 0;
+	return max(depth(root->_left), depth(root->_right)) + 1;
 }
 
 /* Displays the tree keys by traversing in pre-order manner 	*/

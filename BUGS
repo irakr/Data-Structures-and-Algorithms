@@ -1,0 +1,2 @@
+1. */run.sh bug:
+   - The script continues as if there are no errors even when the make fails.

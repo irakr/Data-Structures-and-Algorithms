@@ -35,6 +35,15 @@ BST_Node *smallest_node(BST_Node *root);
 /* Returns a pointer to the largest key'ed node, i.e., the rightmost node of the tree.	*/
 BST_Node *largest_node(BST_Node *root);
 
+/*
+ * Returns the no of edges from the root through the deepest level node.
+ */
+int height(BST_Node *root);
+
+/*
+ * Returns the no of nodes from the root through the deepest level node.
+ */
+int depth(BST_Node *root);
 
 /* Displays the tree keys by traversing in pre-order manner 	*/
 void print_preorder(BST_Node *root);

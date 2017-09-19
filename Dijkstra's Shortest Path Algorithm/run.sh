@@ -13,8 +13,12 @@ EXE=dijkstra #??????
 
 echo -e "${green}Building Project: $ALGO ..."
 make clean
-make
-wait
+if ! make
+then
+        echo -e "${red}[Build failed]\nExiting...${nocolor}\n"
+        exit 1
+fi
+
 echo -e "${l_green}[Build successful]"
 echo -e "Executing...\n"
 echo -e "${cyan}---------------- $ALGO ----------------${nocolor}"

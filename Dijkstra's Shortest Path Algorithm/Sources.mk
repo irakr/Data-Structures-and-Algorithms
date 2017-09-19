@@ -3,7 +3,13 @@
 SOURCES = main.c	\
 	  dijkstra.c	\
 
-# Directories of required libraries
+##############################################################
+# Directories of required libraries.
+#
+# FIXME If we need graph as a library, then we will have to 
+# explicitly build singly linked list too. This is because
+# graph depends on list.
+##############################################################
 GRAPH_DIR = ../Basic\ Graph
 LIST_DIR = ../Singly\ Linked\ List
 

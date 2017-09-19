@@ -1,1 +1,10 @@
 1. Please change the 'Basic Graph' to simple 'Graph'.
+
+2. Update the Makefile of 'Singly Linked List'.
+
+3. Every module should be only concerned about their direct dependency.
+   For example,
+   Let, Target_Module = A.
+   If module A depends on a module called B and if B in turn depends on another module C,
+   then the build system of A should not be concerned about building C by itself. The module
+   B should be responsible for building C.

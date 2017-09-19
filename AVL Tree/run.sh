@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #??????
-ALGO="Binary Search Tree"
+ALGO="AVL Tree"
 
 red='\e[0;31m'
 green='\e[0;32m'
@@ -9,15 +9,19 @@ l_green='\e[1;32m'
 cyan='\e[1;36m'
 nocolor='\e[0m'
 
-EXE=bst #??????
+EXE=avl #??????
 
 echo -e "${green}Building Project: $ALGO ..."
 make clean
+
+# Make
 if ! make
 then
-        echo -e "${red}[Build failed]\nExiting...${nocolor}\n"
-        exit 1
+	echo -e "${red}[Build failed]\nExiting...${nocolor}\n"
+	exit 1
 fi
+
+wait
 
 echo -e "${l_green}[Build successful]"
 echo -e "Executing...\n"
