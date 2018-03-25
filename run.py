@@ -3,6 +3,7 @@
 ### Run the desired algorithm that has an entry in the file 'Register' ###
 
 import os
+import platform
 
 registered_dirs = []
 
@@ -55,8 +56,11 @@ def main():
     
     # Now its time to execute the algorithm by invoking its run script
     os.chdir(selected_dir)
-    
-    # NOTE: stderr is suppressed for cleaner output
-    os.spawnlp(os.P_WAIT, 'bash', 'bash', 'run.sh', '2>/dev/null')
+    sys_name = platform.system()
+    if sys_name is "Linux":
+	    os.spawnlp(os.P_WAIT, 'bash', 'bash', 'run.sh', '2>/dev/null')
+    elif sys_name is "Windows":
+	    os.spawnl(os.P_WAIT, 'run.sh')
+	
     
 exit(main())
