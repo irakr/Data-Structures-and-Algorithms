@@ -15,3 +15,8 @@ Sample implementations of data structures and algorithms in any programming lang
   separate line. Otherwise, 'run.py' will fail to detect your implementation.
 - Run 'run.py'.
 - If all OK, then the algorithm will run as expected.
+
+# How to run
+- Linux: Just run the python script 'run.py' from the shell.
+- Windows: It is recommended to install git-bash and run the script 'run.py'.
+		   Windows batch scripts are not implemented yet.

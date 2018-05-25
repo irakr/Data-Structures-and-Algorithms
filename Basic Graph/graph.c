@@ -19,7 +19,7 @@ Graph *create_graph(int V) {
         free(g);    // Release memories backwards
         return NULL;
     }
-    for(int i=0; i<V; i++) {
+    for(int i = 0; i < V; i++) {
         g->edge_[i] = (int*)calloc(V, sizeof(int));
         if(!g->edge_[i]) {
             free(g->edge_);
@@ -33,24 +33,39 @@ Graph *create_graph(int V) {
         free(g);
         return NULL;
     }
+	
+	g->weight_ = (int32_t**)calloc(V, sizeof(int32_t));
+	if(!g->weight_) {
+		free(g);
+		return NULL;
+	}
+	for(int i = 0; i < V; i++) {
+		g->weight_[i] = (int32_t*)calloc(V, sizeof(int32_t));
+		if(!g->weight_[i]) {
+			free(g->weight_);
+			free(g);
+			return NULL;
+		}
+	}
 #endif
     
     return g;
 }
 
-int add_edge(Graph *g, int src, int dest) {
+int add_edge(Graph *g, int src, int dest, int weight) {
     if(!g)
         return -1;
     if(src < 0 || dest < 0 || src >= g->nnodes_ || dest >= g->nnodes_)
         return -1;
     
-    // Note that this is an undirected graph. Therefore, edge will be linked from src to dest as well as dest to src.
+    // Note that this is an undirected graph. Therefore, edge will be linked from src to dest and vice-versa.
 #ifdef MATRIX_IMPL
-    g->edge_[src][dest] = 1;
-    g->edge_[dest][src] = 1;
+    g->edge_[src][dest] = weight;
+    g->edge_[dest][src] = weight;
 #else
     push(g->adj_list_+src, (void*)&dest, sizeof(dest));
-    push(g->adj_list_+dest, (void*)&src, sizeof(src));
+	g->weight_[src][dest] = weight;
+    //push(g->adj_list_+dest, (void*)&src, sizeof(src));
 #endif
     
     return 0;
@@ -80,8 +95,10 @@ void print_graph(Graph *g) {
     for(i = 0; i < g->nnodes_; i++) {
         S_Node *walker = g->adj_list_[i].head_;
         printf("%-5d", i);
-        for(; walker != NULL; walker = walker->next_)
-            printf("%5d", (int)(*((int*)walker->content_)));
+        for(; walker != NULL; walker = walker->next_) {
+			int dest = (int)(*((int*)walker->content_));
+            printf("%5d(%d)", dest, g->weight_[i][dest]);
+		}
         puts("");
     }
     

@@ -9,11 +9,17 @@ OBJECTS = $(SOURCES:.c=.o)
 CC = gcc
 LD = ld
 LDFLAGS = -lc
-CFLAGS = -Wall -std=c99
+DEBUG = 
+CFLAGS = -Wall -std=c99 $(DEBUG)
 CPPFLAGS = 
+DEFINES = -DMATRIX_IMPL
 INCLUDES = -I$(GRAPH_DIR) -I$(LIST_DIR)
-GDB = -g
-EXE = dijkstra
+
+ifeq ($(OS), Windows_NT)
+	EXE = dijkstra.exe
+else
+	EXE = dijkstra
+endif
 
 # Build everything in the directory
 .PHONY: all
@@ -27,22 +33,17 @@ $(EXE):	build_lib $(OBJECTS)
 
 # NOTE that $< and $@ are wrapped within single quotes in the directory name contains space
 %.o:	%.c
-	$(CC) $(CFLAGS) $(CPPFLAGS) $(INCLUDES) -c '$<' -o $@
+	$(CC) $(CFLAGS) $(CPPFLAGS) $(INCLUDES) $(DEFINES) -c '$<' -o $@
 
 .PHONY: build_lib
 build_lib: $(LIB_OBJECTS)
 
 $(GRAPH_OBJ): $(GRAPH_SRC)
-	$(CC) $(CFLAGS) $(CPPFLAGS) $(INCLUDES) -c '$^' -o $@
+	$(CC) $(CFLAGS) $(CPPFLAGS) $(INCLUDES) $(DEFINES) -c '$^' -o $@
 
 $(LIST_OBJ): $(LIST_SRC)
-	$(CC) $(CFLAGS) $(CPPFLAGS) $(INCLUDES) -c '$^' -o $@
+	$(CC) $(CFLAGS) $(CPPFLAGS) $(INCLUDES) $(DEFINES) -c '$^' -o $@
 
-# For debugging output
-.PHONY: debug
-debug:
-	CFLAGS += $(GDB)
-	make all
 
 clean:
 	-rm -rf *.o

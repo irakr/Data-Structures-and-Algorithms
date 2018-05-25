@@ -58,9 +58,11 @@ def main():
     os.chdir(selected_dir)
     sys_name = platform.system()
     if sys_name is "Linux":
-	    os.spawnlp(os.P_WAIT, 'bash', 'bash', 'run.sh', '2>/dev/null')
+        os.spawnlp(os.P_WAIT, 'bash', 'bash', 'run.sh', '2>/dev/null')
     elif sys_name is "Windows":
-	    os.spawnl(os.P_WAIT, 'run.sh')
+        print '[Windows Error] Windows batch scripts are not implemented currently.'
+        print 'Please build and run manually from the respective directory.'
+        #os.spawnl(os.P_WAIT, 'run.sh')
 	
     
 exit(main())
