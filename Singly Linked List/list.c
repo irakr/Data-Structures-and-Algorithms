@@ -36,6 +36,7 @@ static inline S_Node *new_node(void *content, size_t size, create_mode_t mode) {
         copy = content;
     
     node->content_ = copy;
+    node->content_len_ = size;
     node->next_ = NULL;
     return node;
 }
@@ -64,6 +65,7 @@ int push(S_Head *head, void *content, size_t size) {
         return -1;
     }
     
+    
     // Empty list condition
     if(!(head->head_))
         head->head_ = head->tail_ = node;
@@ -71,8 +73,51 @@ int push(S_Head *head, void *content, size_t size) {
         head->tail_->next_ = node;
         head->tail_ = node;
     }
+    head->nnodes_++;
     
     return 0;
+}
+
+S_Node *remove_node(S_Head *head, uint32_t index) {
+    if(!head || index < 0 || index >= head->nnodes_)
+        return NULL;
+    
+    S_Node *ret = NULL;
+    
+    // If there are no nodes in the list.    
+    if(head->nnodes_ == 0)
+        return ret;
+
+    // If only 1 node in the list.
+    if(head->nnodes_ == 1) {
+        ret = head->head_;
+        head->head_ = head->tail_ = NULL;
+        head->nnodes_--;
+        return ret;
+    }
+    
+    // For all other case.
+    S_Node *walker, *lazy_walker = NULL;
+    uint32_t temp_index = index;
+    for(walker = head->head_; walker && (temp_index > 0); walker = walker->next_,--temp_index) {
+        lazy_walker = walker;
+    }
+    
+    ret = walker; // Node to be removed from the list.
+    
+    // If index was 0.
+    if(!lazy_walker)
+        head->head_ = head->head_->next_;
+    else { //else if index > 0.
+        lazy_walker->next_ = walker->next_;
+        // If index was for last node,i.e., head->nnodes-1.
+        if(walker == head->tail_)
+            head->tail_ = lazy_walker;
+    }
+    walker->next_ = NULL;
+    
+    head->nnodes_--;
+    return ret;
 }
 
 void print_list(S_Head *head, void *first_content, size_t size) {
@@ -82,7 +127,7 @@ void print_list(S_Head *head, void *first_content, size_t size) {
     
 }
 
-void print_list_cb(void (*printer)(void*), S_Head *list) {
+void print_list_cb(CallBack_Printer printer, S_Head *list) {
     if(!printer || !list)
         return;
     
@@ -90,5 +135,6 @@ void print_list_cb(void (*printer)(void*), S_Head *list) {
     for(; walker != NULL; walker = walker->next_) {
         printer(walker->content_);  // XXX... Trouble with interpreting back to 'Guitar' type.
     }
+    puts("");
     
 }

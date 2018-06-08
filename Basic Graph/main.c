@@ -22,7 +22,5 @@ int main() {
     
     print_graph(myGraph);
 	
-	while(1);
-	
     return 0;
 }

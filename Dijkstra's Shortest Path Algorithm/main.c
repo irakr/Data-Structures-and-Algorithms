@@ -20,9 +20,10 @@ int main() {
 	add_edge(G, 6, 7, 1);
 	add_edge(G, 6, 8, 6);
 	add_edge(G, 7, 8, 7);
-
-	//print_graph(G);
-
+	
+	puts("Input graph G =\n");
+	print_graph(G);
+	puts("");
 	Dijkstra(G, 0);
 
 	return 0;

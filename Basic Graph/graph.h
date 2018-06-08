@@ -21,7 +21,7 @@ typedef struct graph {
     int **edge_;
 #else
 // Default is adjacency list implementation
-	// Dynamically allocated 1-d array.
+	// Dynamically allocated 1-d array of linked lists.
     S_Head *adj_list_;
 	EdgeWeight weight_;
 #endif

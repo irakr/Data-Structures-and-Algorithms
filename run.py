@@ -53,16 +53,19 @@ def main():
         else:
             print '[ERROR] The algorithm ' + str(algo) + ' does not exist'
             return -1
-    
+    print '**'
     # Now its time to execute the algorithm by invoking its run script
     os.chdir(selected_dir)
+    print '**'
     sys_name = platform.system()
-    if sys_name is "Linux":
+    print '**'+sys_name
+    if sys_name == 'Linux':
+        print '|| LINUX ||'
+        print '**'
         os.spawnlp(os.P_WAIT, 'bash', 'bash', 'run.sh', '2>/dev/null')
-    elif sys_name is "Windows":
+    elif sys_name == 'Windows':
         print '[Windows Error] Windows batch scripts are not implemented currently.'
         print 'Please build and run manually from the respective directory.'
         #os.spawnl(os.P_WAIT, 'run.sh')
-	
-    
+    print '**'
 exit(main())

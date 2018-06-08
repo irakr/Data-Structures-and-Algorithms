@@ -81,8 +81,16 @@ void print_graph(Graph *g) {
     
 #ifdef MATRIX_IMPL
     
-    puts("Printing adjacency matrix implemented graph");
+    //puts("Printing adjacency matrix implemented graph");
+    
+    // Print column wise indexes first. Then print each row-wise
+    // indexes along with the edges.
+    printf("%5s", "+");
+    for(i = 0; i < g->nnodes_; ++i)
+        printf("%5d", i);
+    puts("");
     for(i = 0; i < g->nnodes_; i++) {
+        printf("%5d", i);
         for(j = 0; j < g->nnodes_; j++) {
             printf("%5d", g->edge_[i][j]);
         }
@@ -91,7 +99,7 @@ void print_graph(Graph *g) {
     
 #else
     
-    puts("Printing adjacency list implemented graph");
+    //puts("Printing adjacency list implemented graph");
     for(i = 0; i < g->nnodes_; i++) {
         S_Node *walker = g->adj_list_[i].head_;
         printf("%-5d", i);
