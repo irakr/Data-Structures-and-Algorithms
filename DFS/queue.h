@@ -6,9 +6,9 @@
 #define QUEUE_MAXSIZE   512
 
 /* A linked list based queue data structure.
- * See ../Singly\ Linked\ List/list.h for more info on S_Head.
+ * See ../Singly\ Linked\ List/list.h for more info on S_List.
  */
-typedef S_Head Queue;
+typedef S_List Queue;
 
 /*
  * Creates a new empty queue and returns a pointer to it.

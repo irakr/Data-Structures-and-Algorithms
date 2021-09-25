@@ -6,7 +6,7 @@
 #ifndef GRAPH_H_
 #define GRAPH_H_
 
-// For S_Head data type
+// For S_List data type
 #include "list.h"
 #include <stdio.h>
 #include <stdint.h>
@@ -22,7 +22,7 @@ typedef struct graph {
 #else
 // Default is adjacency list implementation
 	// Dynamically allocated 1-d array of linked lists.
-    S_Head *adj_list_;
+    S_List *adj_list_;
 	EdgeWeight weight_;
 #endif
 

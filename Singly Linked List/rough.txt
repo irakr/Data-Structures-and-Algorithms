@@ -1,0 +1,13 @@
+
+
+
+reverse_list():
+
+                *               *               *               *               *
+p               c               n
+                p               c               n
+                                p               c               n
+                                                p               c               n
+                                                                p               c               n
+                                                                                p               c               n (END LOOP)
+                                                                            

@@ -18,10 +18,10 @@ void printer(void* arg) {
 
 /*  main program    */
 int main(int argc, char *argv[]) {
-    S_Head list;
+    S_List list;
     init_head(&list);
-    int val;
-    
+    int ret, val;
+
     while(1) {
         printf("Enter a value to be inserted(-1 to end): ");
         scanf("%d", &val);
@@ -32,6 +32,23 @@ int main(int argc, char *argv[]) {
 
     PRINT_LIST(list);
     
+    // Reverse list.
+    printf("Reversing list...\n");
+    if(reverse_list(&list) < 0) {
+        fprintf(stderr, "Error: Reverse list operation failed.\n");
+        destroy_list(&list);
+        return EXIT_FAILURE;
+    }
+    PRINT_LIST(list);
+
+    // Reverse again to bring the original order back.
+    if(reverse_list(&list) < 0) {
+        fprintf(stderr, "Error: Reverse list operation failed.\n");
+        destroy_list(&list);
+        return EXIT_FAILURE;
+    }
+    PRINT_LIST(list);
+
     while(1) { 
         printf("Enter node index to be deleted(-1 to end): ");
         scanf("%d", &val);
@@ -40,10 +57,14 @@ int main(int argc, char *argv[]) {
         S_Node *del_node = remove_node(&list, val);
         if(!del_node) {
             fprintf(stderr, "Error in remove_node(): Probably you have provided an invalid index.\n");
-            return 0;
+            destroy_list(&list);
+            return EXIT_FAILURE;
         }
         PRINT_LIST(list);
     }
     PRINT_LIST(list);
-    return 0;
+
+    destroy_list(&list);
+    return EXIT_SUCCESS;
 }
+

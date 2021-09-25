@@ -38,7 +38,7 @@ void print_info(Guitar *g);
 
 /*  main program    */
 int main(int argc, char *argv[]) {
-    S_Head mylist;
+    S_List mylist;
     init_head(&mylist);
     
     Guitar myGuitar;

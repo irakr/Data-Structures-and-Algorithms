@@ -28,7 +28,7 @@ Graph *create_graph(int V) {
         }
     }
 #else // Adjacency list implementation
-    g->adj_list_ = (S_Head*)calloc(V, sizeof(S_Head));
+    g->adj_list_ = (S_List*)calloc(V, sizeof(S_List));
     if(!g->adj_list_) {
         free(g);
         return NULL;

@@ -14,16 +14,16 @@ int enqueue(Queue *queue, void *data, size_t size) {
         return -1;
     
     // Store the copy of the data in the queue.
-    push((S_Head*)queue, data, size);
+    push((S_List*)queue, data, size);
     
     return 0;
 }
 
 // TODO....First implement node deletion in list library.
 S_Node* dequeue(Queue *queue) {
-    return remove_node((S_Head*)queue, 0);
+    return remove_node((S_List*)queue, 0);
 }
 
 void print_queue(Queue *queue, CallBack_Printer printer) {
-    print_list_cb(printer, (S_Head*)queue);
+    print_list_cb(printer, (S_List*)queue);
 }
